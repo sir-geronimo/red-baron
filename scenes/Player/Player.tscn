@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dysx1l7205xbw"]
+
+[ext_resource type="Texture2D" uid="uid://cgwcbhbtilet" path="res://assets/Ships/ship_0005.png" id="1_8chrl"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_hv1eh"]
+[ext_resource type="Script" path="res://scripts/Gun.gd" id="3_7y8tl"]
+[ext_resource type="Texture2D" uid="uid://rs6c84itbvat" path="res://assets/Tiles/tile_0030.png" id="3_ggup2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4p7v5"]
+size = Vector2(32, 24)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hv1eh")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4p7v5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="LeftGun" type="Sprite2D" parent="."]
+position = Vector2(-8, -6)
+rotation = -3.14159
+texture = ExtResource("3_ggup2")
+
+[node name="Gun" type="Marker2D" parent="LeftGun"]
+position = Vector2(1.50996e-06, 10)
+rotation = 3.14159
+script = ExtResource("3_7y8tl")
+
+[node name="RightGun" type="Sprite2D" parent="."]
+position = Vector2(8, -6)
+rotation = -3.14159
+texture = ExtResource("3_ggup2")
+
+[node name="Gun" type="Marker2D" parent="RightGun"]
+position = Vector2(1.50996e-06, 10)
+rotation = 3.14159
+script = ExtResource("3_7y8tl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_8chrl")
