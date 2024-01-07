@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dysx1l7205xbw"]
+
+[ext_resource type="Texture2D" uid="uid://cgwcbhbtilet" path="res://assets/ships/ship_0005.png" id="1_8chrl"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_hv1eh"]
+[ext_resource type="PackedScene" uid="uid://n1ws2ykbmcy0" path="res://components/health_component/health_component.tscn" id="2_w6yga"]
+[ext_resource type="Script" path="res://scripts/Gun.gd" id="3_7y8tl"]
+[ext_resource type="Texture2D" uid="uid://rs6c84itbvat" path="res://assets/tiles/tile_0030.png" id="3_ggup2"]
+[ext_resource type="PackedScene" uid="uid://bssv7havrlc2g" path="res://components/hurtbox_component/hurtbox_component.tscn" id="3_iix66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sske0"]
+size = Vector2(30, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r83he"]
+size = Vector2(34, 28)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hurt_box")]
+motion_mode = 1
+script = ExtResource("1_hv1eh")
+health_component = NodePath("HealthComponent")
+hurt_box = NodePath("HurtBoxComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_sske0")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_w6yga")]
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_iix66")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtBoxComponent" index="0"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_r83he")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="LeftGun" type="Sprite2D" parent="."]
+position = Vector2(-8, -6)
+rotation = -3.14159
+texture = ExtResource("3_ggup2")
+
+[node name="Gun" type="Marker2D" parent="LeftGun"]
+position = Vector2(3.29574e-05, 13)
+rotation = 3.14159
+script = ExtResource("3_7y8tl")
+
+[node name="RightGun" type="Sprite2D" parent="."]
+position = Vector2(8, -6)
+rotation = -3.14159
+texture = ExtResource("3_ggup2")
+
+[node name="Gun" type="Marker2D" parent="RightGun"]
+position = Vector2(3.29574e-05, 13)
+rotation = 3.14159
+script = ExtResource("3_7y8tl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_8chrl")
+
+[editable path="HurtBoxComponent"]

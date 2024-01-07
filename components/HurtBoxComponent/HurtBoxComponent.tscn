@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bssv7havrlc2g"]
-
-[ext_resource type="Script" path="res://components/HurtBoxComponent/HurtBoxComponent.gd" id="1_pcfap"]
-
-[node name="HurtBoxComponent" type="Area2D"]
-script = ExtResource("1_pcfap")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
