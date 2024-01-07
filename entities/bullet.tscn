@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://ql722m7x3j8k"]
+[gd_scene load_steps=5 format=3 uid="uid://ql722m7x3j8k"]
 
-[ext_resource type="Script" path="res://entities/bullet/Bullet.gd" id="1_723fd"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_y72vq"]
 [ext_resource type="Texture2D" uid="uid://dy6myp1ggkusu" path="res://assets/tiles/tile_0000.png" id="2_a1btj"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_ou8j1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqamv"]
 radius = 5.0
 height = 20.0
 
-[node name="Bullet" type="CharacterBody2D"]
-script = ExtResource("1_723fd")
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_y72vq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(0.8, 1)
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_ou8j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 shape = SubResource("CapsuleShape2D_rqamv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

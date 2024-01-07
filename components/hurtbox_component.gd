@@ -1,6 +1,7 @@
 class_name HurtBoxComponent
 extends Area2D
 
+@export var attack_component: AttackComponent
 @export var health_component: HealthComponent
 
 # Called when the node enters the scene tree for the first time.

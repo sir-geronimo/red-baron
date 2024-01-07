@@ -1,5 +1,8 @@
+class_name Enemy
 extends Node
 
+@export var health_component: HealthComponent
+@export var attack_component: AttackComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
