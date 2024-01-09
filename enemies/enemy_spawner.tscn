@@ -1,19 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddeb3qx5uj4ar"]
+[gd_scene load_steps=7 format=3 uid="uid://ddeb3qx5uj4ar"]
 
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="1_iik2f"]
 [ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_s0wdp"]
 [ext_resource type="PackedScene" uid="uid://grx2dc1wxjwr" path="res://enemies/small_enemy.tscn" id="2_8wtqh"]
+[ext_resource type="Resource" uid="uid://ci0fm6040mf8s" path="res://game_stats.tres" id="2_e78nt"]
 [ext_resource type="PackedScene" uid="uid://benor0neiah45" path="res://enemies/medium_enemy.tscn" id="3_7m1ll"]
 [ext_resource type="PackedScene" uid="uid://d0bmbum7bcfgn" path="res://enemies/big_enemy.tscn" id="4_llxd2"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_s0wdp")
-enemies = Array[PackedScene]([ExtResource("2_8wtqh"), ExtResource("3_7m1ll"), ExtResource("4_llxd2")])
+game_stats = ExtResource("2_e78nt")
+small_enemy_scene = ExtResource("2_8wtqh")
+medium_enemy_scene = ExtResource("3_7m1ll")
+big_enemy_scene = ExtResource("4_llxd2")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("1_iik2f")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="SmallEnemyTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="MediumEnemyTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="BigEnemyTimer" type="Timer" parent="."]
+wait_time = 8.0
 one_shot = true
 autostart = true

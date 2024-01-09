@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cudf3nvq2v6nq"]
+[gd_scene load_steps=5 format=3 uid="uid://cudf3nvq2v6nq"]
 
 [ext_resource type="Theme" uid="uid://bocl36mt2a4bf" path="res://assets/primary_theme.tres" id="1_2jce8"]
-[ext_resource type="LabelSettings" uid="uid://ce85vf5s8sh0y" path="res://assets/fonts/title_label_settings.tres" id="2_1bwgd"]
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="2_i22ws"]
 [ext_resource type="Resource" uid="uid://ci0fm6040mf8s" path="res://game_stats.tres" id="3_3osg5"]
 
@@ -28,8 +27,8 @@ theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Game Over!"
-label_settings = ExtResource("2_1bwgd")
 horizontal_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="CenterContainer/VBoxContainer"]

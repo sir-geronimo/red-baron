@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcng8uhpiyadn"]
+[gd_scene load_steps=4 format=3 uid="uid://bcng8uhpiyadn"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_88xt7"]
 [ext_resource type="Theme" uid="uid://bocl36mt2a4bf" path="res://assets/primary_theme.tres" id="1_gx2p0"]
-[ext_resource type="LabelSettings" uid="uid://ce85vf5s8sh0y" path="res://assets/fonts/title_label_settings.tres" id="2_0qwfn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ehqun"]
 
@@ -23,8 +22,8 @@ theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Red Baron"
-label_settings = ExtResource("2_0qwfn")
 horizontal_alignment = 1
 
 [node name="StartLabel" type="Label" parent="CenterContainer/VBoxContainer"]
