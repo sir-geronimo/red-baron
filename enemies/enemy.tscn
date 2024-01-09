@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv2umxnat3euh"]
+[gd_scene load_steps=12 format=3 uid="uid://dv2umxnat3euh"]
 
 [ext_resource type="Script" path="res://components/health_component.gd" id="1_r4ajq"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ykuna"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" path="res://components/attack_component.gd" id="4_isjh7"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="5_pluws"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="5_tyqfi"]
+[ext_resource type="Script" path="res://components/score_component.gd" id="6_14aqm"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="6_ofyok"]
 [ext_resource type="PackedScene" uid="uid://bqnjvohunfgsl" path="res://effects/explosion_effect.tscn" id="6_wbutr"]
+[ext_resource type="Resource" uid="uid://ci0fm6040mf8s" path="res://game_stats.tres" id="7_1fr25"]
 [ext_resource type="Script" path="res://components/die_component.gd" id="9_52jt3"]
 
 [node name="Enemy" type="Node2D" node_paths=PackedStringArray("health_component", "attack_component")]
@@ -39,6 +41,10 @@ actor = NodePath("../..")
 health_component = NodePath("../HealthComponent")
 dead_effect_spawner_component = NodePath("../../SpawnerComponent")
 
+[node name="ScoreComponent" type="Node" parent="Components"]
+script = ExtResource("6_14aqm")
+game_stats = ExtResource("7_1fr25")
+
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
 collision_mask = 0
 monitoring = false
@@ -50,8 +56,6 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("6_ofyok")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-9.53674e-07, 0.5)

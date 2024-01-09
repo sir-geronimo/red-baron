@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://benor0neiah45"]
+
+[ext_resource type="PackedScene" uid="uid://dv2umxnat3euh" path="res://enemies/enemy.tscn" id="1_13n7r"]
+[ext_resource type="Texture2D" uid="uid://bcgqv41qsxxq5" path="res://assets/ships/ship_0021.png" id="2_6hb2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rqtj"]
+size = Vector2(24, 17)
+
+[node name="MediumEnemy" instance=ExtResource("1_13n7r")]
+
+[node name="HealthComponent" parent="Components" index="0"]
+max_health = 5.0
+
+[node name="MoveComponent" parent="Components" index="1"]
+speed = 70.0
+
+[node name="AttackComponent" parent="Components" index="3"]
+damage = 3.0
+
+[node name="ScoreComponent" parent="Components" index="5"]
+adjust_amount = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7rqtj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7rqtj")
+
+[node name="Sprite" parent="." index="5"]
+texture = ExtResource("2_6hb2s")
