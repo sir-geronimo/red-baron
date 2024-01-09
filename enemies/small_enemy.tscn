@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://grx2dc1wxjwr"]
+
+[ext_resource type="PackedScene" uid="uid://dv2umxnat3euh" path="res://enemies/enemy.tscn" id="1_yseh6"]
+[ext_resource type="Texture2D" uid="uid://cdqq5fo31c3ry" path="res://assets/ships/ship_0022.png" id="2_fm81t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqc3w"]
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmmx7"]
+size = Vector2(20, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8col"]
+size = Vector2(20, 17)
+
+[node name="SmallEnemy" instance=ExtResource("1_yseh6")]
+
+[node name="HealthComponent" parent="Components" index="0"]
+max_health = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" index="0"]
+shape = SubResource("RectangleShape2D_yqc3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_fmmx7")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_s8col")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+scale = Vector2(1, 0.85)
+
+[node name="Sprite" parent="." index="5"]
+texture = ExtResource("2_fm81t")

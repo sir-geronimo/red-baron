@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv2umxnat3euh"]
+
+[ext_resource type="Script" path="res://components/health_component.gd" id="1_r4ajq"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ykuna"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="3_rbcav"]
+[ext_resource type="Script" path="res://components/attack_component.gd" id="4_isjh7"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="5_pluws"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="6_ofyok"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "attack_component")]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_ykuna")
+health_component = NodePath("Components/HealthComponent")
+attack_component = NodePath("Components/AttackComponent")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="HealthComponent" type="Node" parent="Components"]
+script = ExtResource("1_r4ajq")
+max_health = 3.0
+
+[node name="MoveComponent" type="Node" parent="Components" node_paths=PackedStringArray("actor")]
+script = ExtResource("5_pluws")
+actor = NodePath("../..")
+speed = 50.0
+velocity = Vector2(0, 1)
+
+[node name="MeleeAttackComponent" type="Node" parent="Components"]
+script = ExtResource("4_isjh7")
+
+[node name="AttackComponent" type="Node" parent="Components"]
+script = ExtResource("4_isjh7")
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_rbcav")
+attack_component = NodePath("../Components/AttackComponent")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("6_ofyok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-9.53674e-07, 0.5)
+scale = Vector2(1.2, 0.85)
+
+[node name="Sprite" type="Sprite2D" parent="."]

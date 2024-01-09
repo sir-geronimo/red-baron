@@ -1,45 +1,67 @@
-[gd_scene load_steps=9 format=3 uid="uid://lo123csfhdge"]
+[gd_scene load_steps=12 format=3 uid="uid://lo123csfhdge"]
 
 [ext_resource type="Texture2D" uid="uid://cgwcbhbtilet" path="res://assets/ships/ship_0005.png" id="1_8chrl"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="1_chjd2"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dc7t7"]
-[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="2_at52q"]
 [ext_resource type="Script" path="res://components/attack_component.gd" id="5_oyypy"]
-[ext_resource type="PackedScene" uid="uid://buemlsoxch1fa" path="res://gun/single_gun.tscn" id="6_adkbv"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd8nd"]
-size = Vector2(30, 22.125)
+[ext_resource type="PackedScene" uid="uid://svhc0d350k7d" path="res://gun/single_gun.tscn" id="6_adkbv"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="7_tq3sq"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="7_xpf3m"]
+[ext_resource type="Script" path="res://components/move_input_component.gd" id="8_v3hvh"]
+[ext_resource type="Script" path="res://components/move_clamp_component.gd" id="9_g0jpe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0nqx"]
 size = Vector2(32, 24)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd8nd"]
+size = Vector2(30, 22.125)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun")]
+collision_layer = 0
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_dc7t7")
+gun = NodePath("SingleGun")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="HealthComponent" type="Node" parent="Components"]
+script = ExtResource("1_chjd2")
+max_health = 3.0
+
+[node name="AttackComponent" type="Node" parent="Components"]
+script = ExtResource("5_oyypy")
+damage = 1.0
+
+[node name="MoveComponent" type="Node" parent="Components" node_paths=PackedStringArray("actor")]
+script = ExtResource("7_tq3sq")
+actor = NodePath("../..")
+speed = 300.0
+
+[node name="MoveInputComponent" type="Node" parent="Components" node_paths=PackedStringArray("move_component")]
+script = ExtResource("8_v3hvh")
+move_component = NodePath("../MoveComponent")
+
+[node name="MoveClampComponent" type="Node" parent="Components" node_paths=PackedStringArray("actor")]
+script = ExtResource("9_g0jpe")
+actor = NodePath("../..")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource("7_xpf3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("RectangleShape2D_r0nqx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.0625)
 shape = SubResource("RectangleShape2D_gd8nd")
 
-[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-script = ExtResource("2_at52q")
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-shape = SubResource("RectangleShape2D_r0nqx")
-
-[node name="Gun" parent="." node_paths=PackedStringArray("attack_component") instance=ExtResource("6_adkbv")]
+[node name="SingleGun" parent="." node_paths=PackedStringArray("attack_component") instance=ExtResource("6_adkbv")]
 position = Vector2(0, -5)
-rotation = -3.14159
-attack_component = NodePath("../AttackComponent")
+rotation = 3.14159
+attack_component = NodePath("../Components/AttackComponent")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_8chrl")
-
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("1_chjd2")
-max_health = 3.0
-
-[node name="AttackComponent" type="Node" parent="."]
-script = ExtResource("5_oyypy")
-damage = 1.0

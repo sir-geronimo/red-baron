@@ -1,12 +1,15 @@
 class_name HitBoxComponent
 extends Area2D
 
+signal hit(hurtbox: HurtBoxComponent)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	area_entered.connect(_on_hurtbox_entered)
 
+func _on_hurtbox_entered(hurtbox: HurtBoxComponent) -> void:
+	if not hurtbox is HurtBoxComponent:
+		return
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	print("Hitting ", owner.name)
+	hit.emit(hurtbox)
+	hurtbox.hurt.emit(self)

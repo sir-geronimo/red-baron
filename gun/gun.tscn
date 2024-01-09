@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://63klyik6sap"]
+
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_83b81"]
+[ext_resource type="Texture2D" uid="uid://rs6c84itbvat" path="res://assets/tiles/tile_0030.png" id="2_ornh8"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_83b81")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ornh8")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 10)
+gizmo_extents = 5.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

@@ -10,11 +10,11 @@ var health: float = max_health:
 	set = set_health
 
 func set_health(value: float) -> void:
-	health_changed.emit(self.health, value) 
-	health = clamp(value, 0.0, self.max_health)
+	health_changed.emit(health, value) 
+	health = clamp(value, 0.0, max_health)
 
-	if self.is_dead():
+	if is_dead():
 		no_health.emit()
 
 func is_dead() -> bool:
-	return self.health <= 0
+	return health <= 0

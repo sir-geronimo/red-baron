@@ -12,4 +12,4 @@ func shoot():
 		timer.start()
 		var bullet = bullet_entity.instantiate()
 		get_tree().root.add_child(bullet)
-		bullet.position = self.muzzle.global_position
+		bullet.position = muzzle.global_position

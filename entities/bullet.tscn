@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ql722m7x3j8k"]
+[gd_scene load_steps=7 format=3 uid="uid://ql722m7x3j8k"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_y72vq"]
 [ext_resource type="Texture2D" uid="uid://dy6myp1ggkusu" path="res://assets/tiles/tile_0000.png" id="2_a1btj"]
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_ou8j1"]
+[ext_resource type="Script" path="res://components/attack_component.gd" id="2_as46j"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_5avk6"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="4_osjbo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rqamv"]
 radius = 5.0
@@ -11,15 +13,33 @@ height = 20.0
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_y72vq")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(9.53674e-07, 0)
-scale = Vector2(0.8, 1)
+[node name="Components" type="Node" parent="."]
 
-[node name="HitBoxComponent" type="Area2D" parent="."]
-script = ExtResource("2_ou8j1")
+[node name="AttackComponent" type="Node" parent="Components"]
+script = ExtResource("2_as46j")
+damage = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+[node name="MoveComponent" type="Node" parent="Components" node_paths=PackedStringArray("actor")]
+script = ExtResource("4_osjbo")
+actor = NodePath("../..")
+speed = 700.0
+velocity = Vector2(0, -1)
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_5avk6")
+attack_component = NodePath("../Components/AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_rqamv")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.3, 0.8)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("2_a1btj")

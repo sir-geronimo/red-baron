@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgfp0g6rg7u10"]
+
+[ext_resource type="PackedScene" uid="uid://63klyik6sap" path="res://gun/gun.tscn" id="1_38ntq"]
+[ext_resource type="Texture2D" uid="uid://b8jwoayeldttt" path="res://assets/tiles/tile_0017.png" id="2_7xfns"]
+
+[node name="DoubleGun" instance=ExtResource("1_38ntq")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_7xfns")
+
+[node name="Muzzle" parent="." index="1"]
+position = Vector2(0, 9)
+
+[node name="Timer" parent="." index="2"]
+wait_time = 0.1
