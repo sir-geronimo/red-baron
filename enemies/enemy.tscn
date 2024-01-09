@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv2umxnat3euh"]
+[gd_scene load_steps=10 format=3 uid="uid://dv2umxnat3euh"]
 
 [ext_resource type="Script" path="res://components/health_component.gd" id="1_r4ajq"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ykuna"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="3_rbcav"]
 [ext_resource type="Script" path="res://components/attack_component.gd" id="4_isjh7"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="5_pluws"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="5_tyqfi"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="6_ofyok"]
+[ext_resource type="PackedScene" uid="uid://bqnjvohunfgsl" path="res://effects/explosion_effect.tscn" id="6_wbutr"]
+[ext_resource type="Script" path="res://components/die_component.gd" id="9_52jt3"]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "attack_component")]
-collision_layer = 0
-motion_mode = 1
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("health_component", "attack_component")]
 script = ExtResource("1_ykuna")
 health_component = NodePath("Components/HealthComponent")
 attack_component = NodePath("Components/AttackComponent")
@@ -32,6 +33,12 @@ script = ExtResource("4_isjh7")
 [node name="AttackComponent" type="Node" parent="Components"]
 script = ExtResource("4_isjh7")
 
+[node name="DieComponent" type="Node" parent="Components" node_paths=PackedStringArray("actor", "health_component", "dead_effect_spawner_component")]
+script = ExtResource("9_52jt3")
+actor = NodePath("../..")
+health_component = NodePath("../HealthComponent")
+dead_effect_spawner_component = NodePath("../../SpawnerComponent")
+
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack_component")]
 collision_mask = 0
 monitoring = false
@@ -49,5 +56,9 @@ script = ExtResource("6_ofyok")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-9.53674e-07, 0.5)
 scale = Vector2(1.2, 0.85)
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("5_tyqfi")
+scene = ExtResource("6_wbutr")
 
 [node name="Sprite" type="Sprite2D" parent="."]

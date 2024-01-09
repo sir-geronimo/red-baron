@@ -145,18 +145,11 @@ position = Vector2(180, 600)
 [node name="SmallEnemy" parent="Enemies" instance=ExtResource("3_dd1de")]
 position = Vector2(48, 40)
 rotation = 3.14159
-collision_layer = 1
 
-[node name="SmallEnemy2" parent="Enemies" node_paths=PackedStringArray("health_component", "attack_component") instance=ExtResource("3_dd1de")]
-position = Vector2(72, 64)
+[node name="SmallEnemy5" parent="Enemies" instance=ExtResource("3_dd1de")]
+position = Vector2(112, 40)
 rotation = 3.14159
-collision_layer = 1
-health_component = NodePath("../SmallEnemy/Components/HealthComponent")
-attack_component = NodePath("../SmallEnemy/Components/AttackComponent")
 
-[node name="SmallEnemy3" parent="Enemies" node_paths=PackedStringArray("health_component", "attack_component") instance=ExtResource("3_dd1de")]
-position = Vector2(96, 40)
+[node name="SmallEnemy4" parent="Enemies" instance=ExtResource("3_dd1de")]
+position = Vector2(80, 16)
 rotation = 3.14159
-collision_layer = 1
-health_component = NodePath("../SmallEnemy/Components/HealthComponent")
-attack_component = NodePath("../SmallEnemy/Components/AttackComponent")

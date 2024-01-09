@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqnjvohunfgsl"]
+
+[ext_resource type="Texture2D" uid="uid://byyfd07ql7pjh" path="res://assets/tiles/tile_0004.png" id="1_p1khv"]
+[ext_resource type="Texture2D" uid="uid://bd07npsuwu4wp" path="res://assets/tiles/tile_0005.png" id="1_q03hh"]
+[ext_resource type="Texture2D" uid="uid://5a7gni4r48f2" path="res://assets/tiles/tile_0006.png" id="2_g4srv"]
+[ext_resource type="Texture2D" uid="uid://wj1lfa5cfuwf" path="res://assets/tiles/tile_0007.png" id="3_77lye"]
+[ext_resource type="Texture2D" uid="uid://chqi464bem2wf" path="res://assets/tiles/tile_0008.png" id="4_x0vcp"]
+[ext_resource type="Script" path="res://components/onetime_animated_effect.gd" id="6_4dglm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bknrt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p1khv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_q03hh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g4srv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_77lye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x0vcp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="OnetimeAnimatedEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bknrt")
+autoplay = "default"
+script = ExtResource("6_4dglm")

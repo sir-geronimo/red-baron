@@ -6,7 +6,7 @@ signal no_health
 
 @export var max_health: float = 100.0
 
-var health: float = max_health:
+@onready var health: float = max_health:
 	set = set_health
 
 func set_health(value: float) -> void:
@@ -15,6 +15,9 @@ func set_health(value: float) -> void:
 
 	if is_dead():
 		no_health.emit()
+
+func take_damage(damage: float) -> void:
+	health = health - damage
 
 func is_dead() -> bool:
 	return health <= 0

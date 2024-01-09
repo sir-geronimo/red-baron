@@ -10,6 +10,5 @@ func _on_hurtbox_entered(hurtbox: HurtBoxComponent) -> void:
 	if not hurtbox is HurtBoxComponent:
 		return
 
-	print("Hitting ", owner.name)
 	hit.emit(hurtbox)
 	hurtbox.hurt.emit(self)
