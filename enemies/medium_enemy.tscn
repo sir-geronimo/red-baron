@@ -8,14 +8,11 @@ size = Vector2(24, 17)
 
 [node name="MediumEnemy" instance=ExtResource("1_13n7r")]
 
-[node name="HealthComponent" parent="Components" index="0"]
-max_health = 5.0
-
 [node name="MoveComponent" parent="Components" index="1"]
 speed = 70.0
 
 [node name="AttackComponent" parent="Components" index="3"]
-damage = 3.0
+damage = 2.0
 
 [node name="ScoreComponent" parent="Components" index="5"]
 adjust_amount = 5

@@ -9,13 +9,13 @@ size = Vector2(28, 23)
 [node name="BigEnemy" instance=ExtResource("1_qo1fd")]
 
 [node name="HealthComponent" parent="Components" index="0"]
-max_health = 8.0
+max_health = 5.0
 
 [node name="AttackComponent" parent="Components" index="3"]
-damage = 5.0
+damage = 3.0
 
 [node name="ScoreComponent" parent="Components" index="5"]
-adjust_amount = 10
+adjust_amount = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" index="0"]
 position = Vector2(0, 0.5)

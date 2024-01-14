@@ -18,6 +18,7 @@ script = ExtResource("2_i22ws")
 game_stats = ExtResource("3_3osg5")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 offset_right = 368.0
 offset_bottom = 640.0
 
